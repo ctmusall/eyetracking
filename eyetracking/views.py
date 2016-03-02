@@ -1,8 +1,10 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 def index(request):
-    return HttpResponse("INDEX PAGE")
-
+    context_dict = {'boldmessage': "I am the bold message"}
+    return render(request, 'eyetracking/index.html', context_dict)
+    
 def about(request):
     return HttpResponse("ABOUT PAGE")
 
