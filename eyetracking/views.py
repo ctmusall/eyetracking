@@ -6,7 +6,7 @@ def index(request):
     return render(request, 'eyetracking/index.html', context_dict)
 
 def about(request):
-    return HttpResponse("ABOUT PAGE")
+    return render(request, 'eyetracking/about.html')
 
 def register(request):
     return HttpResponse("REGISTRATION PAGE")
