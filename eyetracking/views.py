@@ -2,9 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 def index(request):
-    context_dict = {'boldmessage': "I am the bold message"}
+    context_dict = {'boldmessage': "Please select an option below: "}
     return render(request, 'eyetracking/index.html', context_dict)
-    
+
 def about(request):
     return HttpResponse("ABOUT PAGE")
 

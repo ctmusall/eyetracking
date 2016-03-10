@@ -14,11 +14,19 @@ Including another URLconf
     2. Import the include() function: from django.conf.urls import url, include
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
+from django.conf import settings
 from django.conf.urls import patterns, url, include
 from django.contrib import admin
 from eyetracking import urls
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'', include('eyetracking.urls')), 
+    url(r'', include('eyetracking.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += patterns(
+    'django.views.static',
+    (r'^media/(?P<path>.*)',
+    'serve',
+    {'document_root': settings.MEDIA_ROOT}), )
