@@ -1,3 +1,4 @@
 from django.contrib import admin
+from eyetracking.models import UserProfile
 
-# Register your models here.
+admin.site.register(UserProfile)
