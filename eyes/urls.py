@@ -27,13 +27,6 @@ class MyRegistrationView(RegistrationView):
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('eyetracking.urls')),
-    url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register')    ,
+    url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
     url(r'^accounts/',include('registration.backends.simple.urls')),
 ]
-
-if settings.DEBUG:
-    urlpatterns += patterns(
-    'django.views.static',
-    (r'^media/(?P<path>.*)',
-    'serve',
-    {'document_root': settings.MEDIA_ROOT}), )
