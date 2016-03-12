@@ -9,13 +9,13 @@
         <strong> {{boldmessage}}</strong><br />
         {% if user.is_authenticated %}
         <h1>Welcome to the Eyetracking Project! {{user.username}}</h1><br />
-        <a href="/logout/">Logout</a><br />
+        <a href="{% url 'auth_logout' %}?next=/">Logout</a><br />
         <a href="/about/">About</a><br />
         {% else %}
         <h1>Welcome to the Eyetracking Project!</h1><br />
-        <a href="/register/">Register</a><br />
+        <a href="{% url 'registration_register' %}">Register</a><br />
         <a href="/about/">About</a><br />
-        <a href="/login/">Login</a><br />
+        <a href="{% url 'auth_login' %}">Login</a><br />
         {% endif %}
         <img src="{% static "images/truck.png" %}" alt="Eyetracking Logo" />
     </body>

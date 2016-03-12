@@ -18,10 +18,17 @@ from django.conf import settings
 from django.conf.urls import patterns, url, include
 from django.contrib import admin
 from eyetracking import urls
+from registration.backends.simple.views import RegistrationView
+
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self, request):
+        return '/'
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('eyetracking.urls')),
+    url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register')    ,
+    url(r'^accounts/',include('registration.backends.simple.urls')),
 ]
 
 if settings.DEBUG:
