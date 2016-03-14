@@ -9,3 +9,17 @@ class UserProfile(models.Model):
     picture = models.ImageField(upload_to='profile-images', blank=True)
     def __unicode__(self):
         return self.user.username
+
+class Category(models.Model):
+    name = models.CharField(max_length = 128, unique = True)
+
+    def __unicode__(self):
+        return self.name
+
+class GatheredData(models.Model):
+    category = models.ForeignKey(Category)
+    title = models.CharField(max_length = 128)
+    url = models.URLField()
+
+    def __unicode__(self):
+        return self.title
