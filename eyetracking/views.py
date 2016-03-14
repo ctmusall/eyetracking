@@ -4,6 +4,7 @@ from eyetracking.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
+from eyetracking.models import Category
 
 def index(request):
     context_dict = {'boldmessage': "Please select an option below: "}
@@ -68,6 +69,8 @@ def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
 
-
+@login_required
 def user(request): #temporary -- <user_name>
-    return HttpResponse("USER PAGE")
+    category_list = Category.objects.order_by('-views')
+    context_dict = {'categories': category_list}
+    return render(request, 'eyetracking/user.html', context_dict)
