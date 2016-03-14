@@ -13,3 +13,9 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('picture', )
+
+class DataGather(forms.Form):
+    location = forms.CharField(max_length = 50)
+    speed = forms.CharField(max_length = 50)
+    gaze = forms.CharField(max_length = 50)
+    incident = forms.CharField(max_length = 50)

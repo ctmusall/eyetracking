@@ -10,16 +10,12 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return self.user.username
 
-class Category(models.Model):
-    name = models.CharField(max_length = 128, unique = True)
-    views = models.IntegerField(default = 0)
-    def __unicode__(self):
-        return self.name
-
 class GatheredData(models.Model):
-    category = models.ForeignKey(Category)
-    title = models.CharField(max_length = 128)
-    url = models.URLField()
+    user = models.ForeignKey(UserProfile)
+    location = models.CharField(max_length = 50, null = True)
+    speed = models.CharField(max_length = 50, null = True)
+    gaze = models.CharField(max_length = 50, null = True)
+    incident = models.CharField(max_length = 50, null = True)
 
     def __unicode__(self):
         return self.title
