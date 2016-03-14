@@ -74,3 +74,15 @@ def user(request): #temporary -- <user_name>
     category_list = Category.objects.order_by('-views')
     context_dict = {'categories': category_list}
     return render(request, 'eyetracking/user.html', context_dict)
+
+@login_required
+def gather(request):
+    if request.POST:
+        form = DataGather(request.POST)
+        if(form.is_valid()):
+            location = str(form.cleaned_data['location'])
+            speed = str(form.cleaned_data['speed'])
+            gaze = str(form.cleaned_data['gaze'])
+            incident = str(form.cleaned_data['incident'])
+    else:
+        return HttpResponse("LEAVE")
