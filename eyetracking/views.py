@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from eyetracking.forms import UserForm, UserProfileForm
+from eyetracking.forms import UserForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -79,10 +79,12 @@ def gather(request):
     if request.POST:
         form = DataGather(request.POST)
         if(form.is_valid()):
+            user = request.user
             location = str(form.cleaned_data['location'])
             speed = str(form.cleaned_data['speed'])
             gaze = str(form.cleaned_data['gaze'])
             incident = str(form.cleaned_data['incident'])
-            gettingdata.addData(location, speed, gaze, incident)
+            gettingdata.addData(location, speed, gaze, incident, user)
+        return HttpResponseRedirect('/gather/')
     else:
         return render(request, 'eyetracking/test.html', {})
