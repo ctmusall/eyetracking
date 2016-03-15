@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 import gettingdata
+from forms import DataGather
 
 def index(request):
     context_dict = {'boldmessage': "Please select an option below: "}
@@ -84,4 +85,4 @@ def gather(request):
             incident = str(form.cleaned_data['incident'])
             gettingdata.addData(location, speed, gaze, incident)
     else:
-        return HttpResponse("<h1>LEAVE!</h1>")
+        return render(request, 'eyetracking/test.html', {})

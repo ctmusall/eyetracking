@@ -11,11 +11,7 @@ class UserProfile(models.Model):
         return self.user.username
 
 class GatheredData(models.Model):
-    user = models.ForeignKey(UserProfile)
     location = models.CharField(max_length = 50, null = True)
     speed = models.CharField(max_length = 50, null = True)
     gaze = models.CharField(max_length = 50, null = True)
     incident = models.CharField(max_length = 50, null = True)
-
-    def __unicode__(self):
-        return self.title

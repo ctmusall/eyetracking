@@ -1,7 +1,8 @@
 from eyetracking.models import GatheredData, UserProfile
 
 def addData(loc, spd, gaz, inc):
-    d = GatherData( location = loc,
+    d = GatheredData( location = loc,
                     speed = spd,
                     gaze = gaz,
-                    incident = inc)
+                    incident = inc,)
+    d.save()

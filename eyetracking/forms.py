@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from eyetracking.models import UserProfile
+from eyetracking.models import UserProfile, GatheredData
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
