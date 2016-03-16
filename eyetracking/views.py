@@ -88,6 +88,6 @@ def gather(request):
             gaze = str(form.cleaned_data['gaze'])
             incident = str(form.cleaned_data['incident'])
             gettingdata.addData(location, speed, gaze, incident, user)
-            return HttpResponse('/')
+            return HttpResponseRedirect('/')
     else:
         return render(request, 'eyetracking/test.html', {})
