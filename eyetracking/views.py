@@ -1,5 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.template import RequestContext
+from django.shortcuts import render, render_to_response
 from eyetracking.forms import UserForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
@@ -91,3 +92,19 @@ def gather(request):
             return HttpResponseRedirect('/')
     else:
         return render(request, 'eyetracking/test.html', {})
+
+@login_required
+def edit_user(request):
+    user = request.user
+    form = UserForm(request.POST or None, initial={'first_name': user.first_name, 'last_name': user.last_name, 'email': user.email})
+    if request.method == 'POST':
+        if (form.is_valid()):
+            user.first_name = request.POST['first_name']
+            user.last_name = request.POST['last_name']
+            user.email = request.POST['email']
+            user.save()
+            return HttpResponseRedirect('/user/')
+    context = {
+        "form": form
+    }
+    return render(request, 'eyetracking/edituser.html', context)

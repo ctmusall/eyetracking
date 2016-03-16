@@ -3,11 +3,13 @@ from django.contrib.auth.models import User
 from eyetracking.models import GatheredData
 
 class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
 
+    first_name = forms.CharField(label = 'First Name')
+    last_name = forms.CharField(label = 'Last Name')
+    email = forms.CharField(label = 'Email')
     class Meta:
         model = User
-        fields = ('username', 'email', 'password', )
+        fields = ('first_name', 'last_name', 'email')
 
 class DataGather(forms.Form):
     location = forms.CharField(max_length = 50)

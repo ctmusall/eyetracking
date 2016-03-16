@@ -5,7 +5,11 @@
     </head>
     <body>
         <h1>Welcome to your page {{ user.username }}!</h1>
-        <a href="/">Home</a>
+        <p>First Name: {{ user.first_name }} </p>
+        <p>Last Name: {{ user.last_name }} </p>
+        <p>Email: {{ user.email }} </p>
+        <a href="/">Home</a><br />
+        <a href="/edituser/">Edit Information</a>
         <br /><br />
         <table style = "width: 100%" border = "1px solid black">
             <tr>
