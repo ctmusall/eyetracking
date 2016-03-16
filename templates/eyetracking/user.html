@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>User</title>
+        <title>User {{ user.username }}</title>
     </head>
     <body>
-        <h1>Welcome to your page {{ user.username }}</h1>
+        <h1>Welcome to your page {{ user.username }}!</h1>
         <a href="/">Home</a>
+        <br /><br />
+        <table style = "width: 100%" border = "1px solid black">
+            <tr>
+                <th>User</th>
+                <th>Created Date</th>
+                <th>Location</th>
+                <th>Speed</th>
+                <th>Gaze</th>
+                <th>Incident</th>
+            </tr>
+            {% for gathereddata in data %}
+                <tr>
+                    <th>{{ gathereddata.user }}</th>
+                    <th>{{ gathereddata.created_date }} </th>
+                    <th> {{ gathereddata.location }}</th>
+                    <th> {{ gathereddata.speed }}</th>
+                    <th>{{ gathereddata.gaze }}</th>
+                    <th>{{ gathereddata.incident }}</th>
+                </tr>
+            {% endfor %}
+        </table>
     </body>
 </html>

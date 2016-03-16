@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 import gettingdata
 from forms import DataGather
+from eyetracking.models import GatheredData
 
 def index(request):
     context_dict = {'boldmessage': "Please select an option below: "}
@@ -72,7 +73,9 @@ def user_logout(request):
 
 @login_required
 def user(request): #temporary -- <user_name>
-    return render(request, 'eyetracking/user.html')
+    data_list = GatheredData.objects.filter(user = request.user)
+    context_dict = {'data': data_list}
+    return render(request, 'eyetracking/user.html', context_dict)
 
 @login_required
 def gather(request):
