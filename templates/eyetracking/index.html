@@ -2,8 +2,14 @@
 
 {% extends 'eyetracking/base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Index{% endblock %}
 
 {% block body_block %}
-    <h1>Welcome to the Eyetracking Project!</h1>
+    <div class = "page-header">
+        {% if user.is_authenticated %}
+            <h1>Welcome to the Eyetracking Project! {{ user.username }}</h1>
+        {% else %}
+            <h1>Welcome to the Eyetracking Project!</h1>
+        {% endif %}
+    </div>
 {% endblock %}
