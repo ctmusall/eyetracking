@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 
-{% load staticfiles %}
+{% extends 'eyetracking/base.html' %}
 
-<html>
-    <head>
-        <title>About Eyetracking</title>
-    </head>
-    <body>
-        <h1>About Us</h1>
-        <img src="{% static "images/raspberry.jpg" %}" alt="Raspberry Pi"/>
-    </body>
-</html>
+{% block title %}About Us{% endblock %}
+
+{% block body_block %}
+    <h1>About Us</h1>
+{% endblock %}

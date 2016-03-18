@@ -1,35 +1,35 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>User {{ user.username }}</title>
-    </head>
-    <body>
-        <h1>Welcome to your page {{ user.username }}!</h1>
-        <p>First Name: {{ user.first_name }} </p>
-        <p>Last Name: {{ user.last_name }} </p>
-        <p>Email: {{ user.email }} </p>
-        <a href="/">Home</a><br />
-        <a href="/edituser/">Edit Information</a>
-        <br /><br />
-        <table style = "width: 100%" border = "1px solid black">
+
+{% extends 'eyetracking/base.html' %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block body_block %}
+    <h1>Welcome to your page {{ user.username }}!</h1>
+    <p>First Name: {{ user.first_name }} </p>
+    <p>Last Name: {{ user.last_name }} </p>
+    <p>Email: {{ user.email }} </p>
+    <a href="/">Home</a><br />
+    <a href="/edituser/">Edit Information</a>
+    <br /><br />
+    <table style = "width: 100%" border = "1px solid black">
+        <tr>
+            <th>User</th>
+            <th>Created Date</th>
+            <th>Location</th>
+            <th>Speed</th>
+            <th>Gaze</th>
+            <th>Incident</th>
+        </tr>
+        {% for gathereddata in data %}
             <tr>
-                <th>User</th>
-                <th>Created Date</th>
-                <th>Location</th>
-                <th>Speed</th>
-                <th>Gaze</th>
-                <th>Incident</th>
+                <th>{{ gathereddata.user }}</th>
+                <th>{{ gathereddata.created_date }} </th>
+                <th> {{ gathereddata.location }}</th>
+                <th> {{ gathereddata.speed }}</th>
+                <th>{{ gathereddata.gaze }}</th>
+                <th>{{ gathereddata.incident }}</th>
             </tr>
-            {% for gathereddata in data %}
-                <tr>
-                    <th>{{ gathereddata.user }}</th>
-                    <th>{{ gathereddata.created_date }} </th>
-                    <th> {{ gathereddata.location }}</th>
-                    <th> {{ gathereddata.speed }}</th>
-                    <th>{{ gathereddata.gaze }}</th>
-                    <th>{{ gathereddata.incident }}</th>
-                </tr>
-            {% endfor %}
-        </table>
-    </body>
-</html>
+        {% endfor %}
+    </table>
+{% endblock %}
