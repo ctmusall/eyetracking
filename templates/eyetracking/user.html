@@ -9,8 +9,8 @@
     <p>First Name: {{ user.first_name }} </p>
     <p>Last Name: {{ user.last_name }} </p>
     <p>Email: {{ user.email }} </p>
-    <a href="/">Home</a><br />
-    <a href="/edituser/">Edit Information</a>
+    <a href="{% url 'index' %}">Home</a><br />
+    <a href="{% url 'edituser' %}">Edit Information</a>
     <br /><br />
     <table style = "width: 100%" border = "1px solid black">
         <tr>
