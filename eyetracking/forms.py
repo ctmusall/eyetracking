@@ -13,6 +13,6 @@ class UserForm(forms.ModelForm):
 
 class DataGather(forms.Form):
     location = forms.CharField(max_length = 50)
-    speed = forms.CharField(max_length = 50)
+    speed = forms.IntegerField()
     gaze = forms.CharField(max_length = 50)
     incident = forms.CharField(max_length = 50)
