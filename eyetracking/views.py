@@ -43,7 +43,7 @@ def user(request): #temporary -- <user_name>
                'text': 'Speed by Incident'},
            'xAxis': {
                 'title': {
-                   'text': 'User'}}})
+                   'text': 'Incident'}}})
     context_dict = {'data': data_list, 'speed': cht}
     return render(request, 'eyetracking/user.html', context_dict)
 
