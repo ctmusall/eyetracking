@@ -7,7 +7,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 import gettingdata
 from forms import DataGather
-from eyetracking.models import GatheredData
+from eyetracking.models import GatheredData, WeatherTest
+from chartit import DataPool, Chart
 
 def index(request):
     return render(request, 'eyetracking/index.html')
@@ -18,7 +19,32 @@ def about(request):
 @login_required
 def user(request): #temporary -- <user_name>
     data_list = GatheredData.objects.filter(user = request.user)
-    context_dict = {'data': data_list}
+    ds = DataPool(
+       series=
+        [{'options': {
+            'source': GatheredData.objects.all()},
+          'terms': [
+            'incident',
+            'speed']}
+         ])
+
+    cht = Chart(
+        datasource = ds,
+        series_options =
+          [{'options':{
+              'type': 'column',
+              'stacking': False},
+            'terms':{
+              'incident': [
+                'speed']
+              }}],
+        chart_options =
+          {'title': {
+               'text': 'Speed by Incident'},
+           'xAxis': {
+                'title': {
+                   'text': 'User'}}})
+    context_dict = {'data': data_list, 'speed': cht}
     return render(request, 'eyetracking/user.html', context_dict)
 
 @login_required
@@ -51,3 +77,32 @@ def edit_user(request):
         "form": form
     }
     return render(request, 'eyetracking/edituser.html', context)
+
+@login_required
+def speed_chart(request):
+    ds = DataPool(
+       series=
+        [{'options': {
+            'source': GatheredData.objects.all()},
+          'terms': [
+            'incident',
+            'speed']}
+         ])
+
+    cht = Chart(
+        datasource = ds,
+        series_options =
+          [{'options':{
+              'type': 'column',
+              'stacking': False},
+            'terms':{
+              'incident': [
+                'speed']
+              }}],
+        chart_options =
+          {'title': {
+               'text': 'Speed at Incident'},
+           'xAxis': {
+                'title': {
+                   'text': 'User'}}})
+    return render(request, 'eyetracking/chart.html',{'speed': cht})

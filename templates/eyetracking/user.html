@@ -4,6 +4,11 @@
 
 {% block title %}{{ user.username }}{% endblock %}
 
+{% block head_block %}
+    {% load chartit %}
+    {{ speed|load_charts:"container"}}
+{% endblock %}
+
 {% block body_block %}
     <h1>Welcome to your page {{ user.username }}!</h1>
     <p>First Name: {{ user.first_name }} </p>
@@ -31,5 +36,6 @@
                 <th>{{ gathereddata.incident }}</th>
             </tr>
         {% endfor %}
-    </table>
+    </table><br />
+    <div id="container">Graph</div>
 {% endblock %}

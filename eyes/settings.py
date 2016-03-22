@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'eyetracking',
     'registration',
+    'chartit',
 ]
 
 MIDDLEWARE_CLASSES = [

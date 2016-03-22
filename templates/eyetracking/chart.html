@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+{% extends 'eyetracking/base.html' %}
+
+{% block title %}Test Chart{% endblock %}
+
+{% block head_block %}
+    {% load chartit %}
+    {{ speed|load_charts:"container"}}
+{% endblock %}
+{% block body_block %}
+    <div id="container">Graph</div>
+{% endblock %}
