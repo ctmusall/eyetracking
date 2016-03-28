@@ -6,7 +6,7 @@
 
 {% block head_block %}
     {% load chartit %}
-    {{ charts|load_charts:"container,dates,speed"}}
+    {{ charts|load_charts:"container,speed"}}
 {% endblock %}
 
 {% block body_block %}
@@ -38,8 +38,6 @@
         {% endfor %}
     </table><br />
     <div id="container">Graph</div>
-    <br />
-    <div id="dates">Graph</div>
     <br />
     <div id="speed">Graph</div>
 {% endblock %}

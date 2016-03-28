@@ -92,7 +92,7 @@ def user(request): #temporary -- <user_name>
           {'title': {
                'text': 'Highest Speed by Date'}},)
 
-    context_dict = {'data': data_list, 'charts': [cht, cht_c, cht_b] }
+    context_dict = {'data': data_list, 'charts': [cht, cht_b] }
     return render(request, 'eyetracking/user.html', context_dict)
 
 @login_required
