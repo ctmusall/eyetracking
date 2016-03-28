@@ -22,9 +22,9 @@ def user(request): #temporary -- <user_name>
     ds = DataPool(
        series=
         [{'options': {
-            'source': GatheredData.objects.all()},
+            'source': GatheredData.objects.filter(user = request.user)},
           'terms': [
-            'incident',
+            'location',
             'speed']}
          ])
 
@@ -35,16 +35,64 @@ def user(request): #temporary -- <user_name>
               'type': 'column',
               'stacking': False},
             'terms':{
-              'incident': [
+              'location': [
                 'speed']
               }}],
         chart_options =
           {'title': {
-               'text': 'Speed by Incident'},
+               'text': 'Speed by Location'},
            'xAxis': {
                 'title': {
-                   'text': 'Incident'}}})
-    context_dict = {'data': data_list, 'speed': cht}
+                   'text': 'Location'}}})
+    ds_c = DataPool(
+       series=
+        [{'options': {
+            'source': GatheredData.objects.filter(user = request.user)},
+          'terms': [
+            'created_date',
+            'speed']}
+         ])
+
+    cht_c = Chart(
+        datasource = ds_c,
+        series_options =
+          [{'options':{
+              'type': 'line',
+              'stacking': False},
+            'terms':{
+              'created_date': [
+                'speed']
+              }}],
+        chart_options =
+          {'title': {
+               'text': 'Speed by Date'},
+           'xAxis': {
+                'title': {
+                   'text': 'Date'}}})
+    ds_b = DataPool(
+       series=
+        [{'options': {
+            'source': GatheredData.objects.filter(user = request.user)},
+          'terms': [
+            'created_date',
+            'speed']}
+         ])
+
+    cht_b = Chart(
+        datasource = ds_b,
+        series_options =
+          [{'options':{
+              'type': 'pie',
+              'stacking': False},
+            'terms':{
+              'created_date': [
+                'speed']
+              }}],
+        chart_options =
+          {'title': {
+               'text': 'Highest Speed by Date'}},)
+
+    context_dict = {'data': data_list, 'charts': [cht, cht_c, cht_b] }
     return render(request, 'eyetracking/user.html', context_dict)
 
 @login_required
@@ -54,7 +102,7 @@ def gather(request):
         if(form.is_valid()):
             user = request.user
             location = str(form.cleaned_data['location'])
-            speed = str(form.cleaned_data['speed'])
+            speed = int(form.cleaned_data['speed'])
             gaze = str(form.cleaned_data['gaze'])
             incident = str(form.cleaned_data['incident'])
             gettingdata.addData(location, speed, gaze, incident, user)
@@ -80,10 +128,11 @@ def edit_user(request):
 
 @login_required
 def speed_chart(request):
+    user = request.user
     ds = DataPool(
        series=
         [{'options': {
-            'source': GatheredData.objects.all()},
+            'source': GatheredData.objects.filter()},
           'terms': [
             'incident',
             'speed']}

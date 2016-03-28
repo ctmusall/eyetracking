@@ -6,7 +6,7 @@
 
 {% block head_block %}
     {% load chartit %}
-    {{ speed|load_charts:"container"}}
+    {{ charts|load_charts:"container,dates,speed"}}
 {% endblock %}
 
 {% block body_block %}
@@ -17,7 +17,7 @@
     <a href="{% url 'index' %}">Home</a><br />
     <a href="{% url 'edituser' %}">Edit Information</a>
     <br /><br />
-    <table style = "width: 100%" border = "1px solid black">
+    <table style = "width: 100%" border = "1px solid black" class = table-bordered>
         <tr>
             <th>User</th>
             <th>Created Date</th>
@@ -38,4 +38,8 @@
         {% endfor %}
     </table><br />
     <div id="container">Graph</div>
+    <br />
+    <div id="dates">Graph</div>
+    <br />
+    <div id="speed">Graph</div>
 {% endblock %}
