@@ -44,31 +44,6 @@ def user(request): #temporary -- <user_name>
            'xAxis': {
                 'title': {
                    'text': 'Location'}}})
-    ds_c = DataPool(
-       series=
-        [{'options': {
-            'source': GatheredData.objects.filter(user = request.user)},
-          'terms': [
-            'created_date',
-            'speed']}
-         ])
-
-    cht_c = Chart(
-        datasource = ds_c,
-        series_options =
-          [{'options':{
-              'type': 'line',
-              'stacking': False},
-            'terms':{
-              'created_date': [
-                'speed']
-              }}],
-        chart_options =
-          {'title': {
-               'text': 'Speed by Date'},
-           'xAxis': {
-                'title': {
-                   'text': 'Date'}}})
     ds_b = DataPool(
        series=
         [{'options': {

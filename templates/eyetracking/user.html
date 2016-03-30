@@ -17,7 +17,7 @@
     <a href="{% url 'index' %}">Home</a><br />
     <a href="{% url 'edituser' %}">Edit Information</a>
     <br /><br />
-    <table style = "width: 100%" border = "1px solid black" class = table-bordered>
+    <table class = "sortable, table">
         <tr>
             <th>User</th>
             <th>Created Date</th>
@@ -28,12 +28,12 @@
         </tr>
         {% for gathereddata in data %}
             <tr>
-                <th>{{ gathereddata.user }}</th>
-                <th>{{ gathereddata.created_date }} </th>
-                <th> {{ gathereddata.location }}</th>
-                <th> {{ gathereddata.speed }}</th>
-                <th>{{ gathereddata.gaze }}</th>
-                <th>{{ gathereddata.incident }}</th>
+                <td>{{ gathereddata.user }}</td>
+                <td>{{ gathereddata.created_date }} </td>
+                <td> {{ gathereddata.location }}</td>
+                <td> {{ gathereddata.speed }}</td>
+                <td>{{ gathereddata.gaze }}</td>
+                <td>{{ gathereddata.incident }}</td>
             </tr>
         {% endfor %}
     </table><br />
