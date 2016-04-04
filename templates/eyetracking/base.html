@@ -2,6 +2,7 @@
 
 <html lang="en">
   <head>
+        {% load staticfiles %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,8 +12,13 @@
         <title>Eyetracking - {% block title %}{% endblock %} </title>
         <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
-        <script src="jquery.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script>
+        <script src="http://static.pureexample.com/js/flot/excanvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.categories.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.symbol.js"></script>
+        <script src="http://static.pureexample.com/js/flot/jquery.flot.pie.min.js"></script>
         <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
