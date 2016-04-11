@@ -98,7 +98,7 @@ def gather(request):
     if request.POST:
         form = DataGather(request.POST)
         if(form.is_valid()):
-            user = request.user
+            user = str(form.cleaned_data['user_name']) 
             location = str(form.cleaned_data['location'])
             speed = int(form.cleaned_data['speed'])
             gaze = str(form.cleaned_data['gaze'])
