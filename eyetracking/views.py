@@ -93,6 +93,7 @@ def user(request): #temporary -- <user_name>
     context_dict = {'data': data_list, 'charts': [cht, cht_b], 'test': data_per_month,}
     return render(request, 'eyetracking/user.html', context_dict)
 
+@login_required
 def gather(request):
     if request.POST:
         form = DataGather(request.POST)
