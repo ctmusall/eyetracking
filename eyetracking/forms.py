@@ -12,7 +12,6 @@ class UserForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'email')
 
 class DataGather(forms.Form):
-    user = forms.CharField(max_length = 50)
     location = forms.CharField(max_length = 50)
     speed = forms.IntegerField()
     gaze = forms.CharField(max_length = 50)
