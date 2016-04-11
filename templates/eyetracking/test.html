@@ -3,7 +3,8 @@
     <head>
     </head>
     <body>
-        <form action = "http://ctmusall.pythonanywhere.com/gather" method = "POST">{% csrf_token %}
+        <form action = "http://ctmusall.pythonanywhere.com/gather/" method = "POST">{% csrf_token %}
+            <input name = "user" value = "clayton" />
             <input name = "location" value = "TEST" />
             <input name = "speed" value = "100" />
             <input name = "gaze" value = "left" />
